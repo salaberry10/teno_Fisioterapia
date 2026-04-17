@@ -633,3 +633,42 @@ a {
 .btn-cancelar:hover {
     color: var(--color-texto);
 }
+
+/* Auth Links */
+.auth-card a {
+    color: var(--color-principal);
+    font-size: 14px;
+}
+
+.auth-card a:hover {
+    text-decoration: underline;
+}
+
+/* Auth remember checkbox */
+.inline-flex {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.inline-flex input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-principal);
+}
+
+/* Auth footer text */
+.auth-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 14px;
+    color: var(--color-texto-suave);
+}
+
+.auth-footer a {
+    color: var(--color-principal);
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
