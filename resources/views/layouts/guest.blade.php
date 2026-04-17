@@ -22,31 +22,12 @@
                 <a href="#">Contacto</a>
                 <a href="/sobre-nosotros">Sobre Nosotros</a>
             </div>
-            <div class="nav-actions">
-                @auth
-                    <a href="{{ url('/dashboard') }}" class="nav-user">{{ Auth::user()->name }}</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="nav-btn">Cerrar Sesión</button>
-                    </form>
-                @else
-                    <a href="{{ route('login') }}" class="nav-btn">Iniciar Sesión</a>
-                @endauth
-            </div>
         </nav>
 
-        <main>
-            @yield('content')
-        </main>
-
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-name">TENO</span>
-                    <span class="logo-sub">Fisioterapia</span>
-                </div>
-                <p>&copy; 2026 Teno Fisioterapia</p>
+        <main class="auth-main">
+            <div class="auth-card">
+                {{ $slot }}
             </div>
-        </footer>
+        </main>
     </body>
 </html>
