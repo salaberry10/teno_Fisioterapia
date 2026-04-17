@@ -19,6 +19,7 @@
             <a href="/">Inicio</a>
             <a href="#">Tratamientos</a>
             <a href="#">Contacto</a>
+            <a href="/sobre-nosotros">Sobre Nosotros</a>
         </div>
         <div class="nav-actions">
             <a href="/login" class="nav-btn">Iniciar Sesión</a>
