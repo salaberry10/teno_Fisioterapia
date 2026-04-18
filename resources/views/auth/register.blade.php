@@ -14,6 +14,12 @@
         </div>
 
         <div class="form-group">
+            <x-input-label for="apellidos" :value="__('Apellidos')" />
+            <x-text-input id="apellidos" type="text" name="apellidos" :value="old('apellidos')" required autocomplete="apellidos" />
+            <x-input-error :messages="$errors->get('apellidos')" class="mt-2" />
+        </div>
+
+        <div class="form-group">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
