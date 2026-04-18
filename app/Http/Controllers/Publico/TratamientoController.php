@@ -13,4 +13,10 @@ class TratamientoController extends Controller
         $tratamientos = Tratamiento::all();
         return view('tratamientos', compact('tratamientos'));
     }
+
+    public function show($slug)
+{
+    $tratamiento = Tratamiento::where('slug', $slug)->firstOrFail();
+    return view('tratamiento', compact('tratamiento'));
+}
 }

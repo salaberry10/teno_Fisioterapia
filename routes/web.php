@@ -23,4 +23,10 @@ Route::resource('admin/tratamientos', AdminTratamientoController::class)->middle
 
 Route::get('/tratamientos', [PublicoTratamientoController::class, 'index'])->name('tratamientos');
 
+Route::get('/tratamiento/{slug}', [PublicoTratamientoController::class, 'show'])->name('tratamiento.show');
+
+use App\Http\Controllers\Publico\SolicitudController;
+
+Route::post('/solicitudes', [SolicitudController::class, 'store'])->name('solicitud.store');
+
 require __DIR__.'/auth.php';
