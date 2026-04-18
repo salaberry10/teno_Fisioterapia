@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\TratamientoController as AdminTratamientoController;
+use App\Http\Controllers\Publico\TratamientoController as PublicoTratamientoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,8 +19,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-use App\Http\Controllers\Admin\TratamientoController;
+Route::resource('admin/tratamientos', AdminTratamientoController::class)->middleware('auth')->names('admin.tratamientos');
 
-Route::resource('admin/tratamientos', TratamientoController::class)->middleware('auth')->names('admin.tratamientos');
+Route::get('/tratamientos', [PublicoTratamientoController::class, 'index'])->name('tratamientos');
+
+Route::get('/tratamiento/{slug}', [PublicoTratamientoController::class, 'show'])->name('tratamiento.show');
+
+use App\Http\Controllers\Publico\SolicitudController;
+
+Route::post('/solicitudes', [SolicitudController::class, 'store'])->name('solicitud.store');
 
 require __DIR__.'/auth.php';

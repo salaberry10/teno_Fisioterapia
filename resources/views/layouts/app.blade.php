@@ -18,7 +18,7 @@
             </div>
             <div class="nav-links">
                 <a href="{{ url('/') }}">Inicio</a>
-                <a href="#">Tratamientos</a>
+                <a href="{{ url('/tratamientos') }}">Tratamientos</a>
                 <a href="#">Contacto</a>
                 <a href="/sobre-nosotros">Sobre Nosotros</a>
             </div>
