@@ -14,4 +14,9 @@ class Solicitud extends Model
         'tratamiento_id',
         'leida',
     ];
+
+    public function tratamiento()
+{
+    return $this->belongsTo(Tratamiento::class);
+}
 }

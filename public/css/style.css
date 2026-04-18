@@ -48,6 +48,118 @@ a {
     gap: 10px;
 }
 
+.nav-logo .logo-img {
+    height: 50px;
+    width: auto;
+}
+
+.logo-text-wrap {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-gris);
+    letter-spacing: 1px;
+}
+
+.logo-sub {
+    font-size: 10px;
+    color: var(--color-gris);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    font-size: 15px;
+    color: var(--color-texto-suave);
+    transition: color 0.2s;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    color: var(--color-principal);
+}
+
+.nav-links .nav-link-login {
+    color: #ffffff !important;
+    background-color: #3BB8D4;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-links .nav-link-login:hover {
+    background-color: #2A9AB8;
+}
+
+.nav-admin-link {
+    font-size: 14px;
+    color: var(--color-texto-suave);
+    text-decoration: none;
+}
+
+.nav-admin-link:hover {
+    color: var(--color-principal);
+}
+
+.nav-user-name {
+    font-size: 14px;
+    color: var(--color-texto-suave);
+}
+
+.nav-btn {
+    background: var(--color-principal);
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.nav-btn:hover {
+    background: var(--color-oscuro);
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-right .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .logo-circle {
     width: 46px;
     height: 46px;
@@ -94,10 +206,23 @@ a {
     color: var(--color-principal);
 }
 
+.nav-links .nav-link-login {
+    color: #ffffff !important;
+    background-color: #3BB8D4;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-links .nav-link-login:hover {
+    background-color: #2A9AB8;
+}
+
 .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    display: none;
 }
 
 .nav-btn {

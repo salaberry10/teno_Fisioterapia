@@ -16,21 +16,23 @@
                     <span class="logo-sub">Fisioterapia</span>
                 </div>
             </div>
-            <div class="nav-links">
-                <a href="{{ url('/') }}">Inicio</a>
-                <a href="{{ url('/tratamientos') }}">Tratamientos</a>
-                <a href="#">Contacto</a>
-                <a href="/sobre-nosotros">Sobre Nosotros</a>
-            </div>
-            <div class="nav-actions">
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="{{ url('/') }}">Inicio</a>
+                    <a href="{{ url('/tratamientos') }}">Tratamientos</a>
+                    <a href="/sobre-nosotros">Sobre Nosotros</a>
+                    <a href="{{ route('contacto') }}">Contacto</a>
+                    @guest
+                        <a href="{{ route('login') }}" class="nav-link-login">Iniciar Sesión</a>
+                    @endguest
+                </div>
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="nav-user">{{ Auth::user()->name }}</a>
+                    <a href="{{ route('admin.tratamientos.index') }}" class="nav-admin-link">Panel Admin</a>
+                    <span class="nav-user-name">{{ Auth::user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="nav-btn">Cerrar Sesión</button>
                     </form>
-                @else
-                    <a href="{{ route('login') }}" class="nav-btn">Iniciar Sesión</a>
                 @endauth
             </div>
         </nav>
