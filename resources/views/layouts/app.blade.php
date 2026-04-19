@@ -27,6 +27,8 @@
                     @endguest
                 </div>
                 @auth
+                    <a href="{{ route('admin.usuarios.index') }}" class="nav-admin-link">Usuarios</a>
+                    <a href="{{ route('admin.citas.index') }}" class="nav-admin-link">Citas</a>
                     <a href="{{ route('admin.tratamientos.index') }}" class="nav-admin-link">Panel Admin</a>
                     <span class="nav-user-name">{{ Auth::user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}">
