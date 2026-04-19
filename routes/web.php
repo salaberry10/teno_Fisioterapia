@@ -3,8 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\TratamientoController as AdminTratamientoController;
 use App\Http\Controllers\Admin\SolicitudController as AdminSolicitudController;
+use App\Http\Controllers\Admin\UserControllerAdmin;
+use App\Http\Controllers\Admin\CitaControllerAdmin;
 use App\Http\Controllers\Publico\TratamientoController as PublicoTratamientoController;
 use App\Http\Controllers\Publico\SolicitudController as PublicoSolicitudController;
+use App\Http\Controllers\Publico\CitaControllerPublico;
 use App\Http\Controllers\Publico\ContactoController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +27,24 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('admin/tratamientos', AdminTratamientoController::class)->middleware('auth')->names('admin.tratamientos');
 Route::resource('admin/solicitudes', AdminSolicitudController::class)->middleware('auth')->names('admin.solicitudes');
+Route::resource('admin/usuarios', UserControllerAdmin::class)->middleware('auth')->names('admin.usuarios');
+
+// Citas - requiere autenticación
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/citas/create', [CitaControllerPublico::class, 'create'])->name('citas.create');
+    Route::post('/citas', [CitaControllerPublico::class, 'store'])->name('citas.store');
+    Route::get('/citas', [CitaControllerPublico::class, 'misCitas'])->name('citas.mis-citas');
+    Route::delete('/citas/{cita}', [CitaControllerPublico::class, 'destroy'])->name('citas.destroy');
+});
+
+// Admin citas
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/admin/citas', [CitaControllerAdmin::class, 'index'])->name('admin.citas.index');
+    Route::put('/admin/citas/{cita}', [CitaControllerAdmin::class, 'update'])->name('admin.citas.update');
+    Route::delete('/admin/citas/{cita}', [CitaControllerAdmin::class, 'destroy'])->name('admin.citas.destroy');
+    Route::get('/admin/horarios', [CitaControllerAdmin::class, 'horarios'])->name('admin.citas.horarios');
+    Route::post('/admin/horarios', [CitaControllerAdmin::class, 'actualizarHorarios'])->name('admin.citas.horarios.update');
+});
 
 Route::get('/tratamientos', [PublicoTratamientoController::class, 'index'])->name('tratamientos');
 Route::get('/tratamiento/{slug}', [PublicoTratamientoController::class, 'show'])->name('tratamiento.show');
