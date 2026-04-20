@@ -17,6 +17,7 @@ return new class extends Migration
             $table->tinyInteger('dia_semana')->unsigned(); // 0=Domingo, 1=Lunes, ..., 6=Sábado
             $table->time('hora_inicio');
             $table->time('hora_fin');
+            $table->enum('turno', ['manana', 'tarde'])->default('manana');
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });

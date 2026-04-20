@@ -24,6 +24,11 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'telefono',
+        'fecha_nacimiento',
+        'direccion',
+        'localidad',
+        'observaciones_medicas',
     ];
 
     /**

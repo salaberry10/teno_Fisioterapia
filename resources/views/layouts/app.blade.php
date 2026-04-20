@@ -27,10 +27,13 @@
                     @endguest
                 </div>
                 @auth
+                    <a href="{{ route('profile.edit') }}" class="nav-user-name">{{ Auth::user()->name }}</a>
+                    <a href="{{ route('citas.mis-citas') }}" class="nav-admin-link">Mis Citas</a>
+                    @if(Auth::user()->is_admin)
                     <a href="{{ route('admin.usuarios.index') }}" class="nav-admin-link">Usuarios</a>
                     <a href="{{ route('admin.citas.index') }}" class="nav-admin-link">Citas</a>
-                    <a href="{{ route('admin.tratamientos.index') }}" class="nav-admin-link">Panel Admin</a>
-                    <span class="nav-user-name">{{ Auth::user()->name }}</span>
+                    <a href="{{ route('admin.index') }}" class="nav-admin-link">Panel Admin</a>
+                    @endif
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="nav-btn">Cerrar Sesión</button>
