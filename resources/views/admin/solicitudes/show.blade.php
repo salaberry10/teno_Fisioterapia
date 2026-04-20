@@ -32,7 +32,8 @@
         </div>
         
         <div style="display: flex; gap: 1rem;">
-            <a href="{{ route('admin.solicitudes.index') }}" class="btn-cancelar">← Volver</a>
+            <a href="{{ route('admin.solicitudes.index') }}" class="btn-cancelar">← Solicitudes</a>
+            <a href="{{ route('admin.index') }}" class="btn-editar">← Panel Admin</a>
             <form action="{{ route('admin.solicitudes.destroy', $solicitud) }}" method="POST">
                 @csrf
                 @method('DELETE')

@@ -12,7 +12,8 @@ class CitaControllerPublico extends Controller
 {
     public function create()
     {
-        return view('publico.citas.create');
+        $horarios = Horario::where('activo', true)->get();
+        return view('publico.citas.create', compact('horarios'));
     }
 
     public function store(Request $request)

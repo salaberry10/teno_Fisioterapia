@@ -671,6 +671,23 @@ a {
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.2s ease;
+}
+
+.admin-card:hover {
+    border-color: var(--color-principal);
+    box-shadow: 0 4px 12px rgba(59, 184, 212, 0.15);
+    transform: translateY(-2px);
+}
+
+.admin-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .admin-card h3 {

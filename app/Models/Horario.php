@@ -14,6 +14,7 @@ class Horario extends Model
         'dia_semana',
         'hora_inicio',
         'hora_fin',
+        'turno',
         'activo',
     ];
 }

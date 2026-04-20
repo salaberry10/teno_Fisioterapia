@@ -5,8 +5,8 @@
         <h1>Bienvenido a <em>Teno Fisioterapia</em></h1>
         <p>Tu salud, nuestra prioridad. Tratamientos personalizados para tu bienestar.</p>
         <div class="hero-btns">
-            <a href="#" class="btn-primary">Pedir Cita</a>
-            <a href="#" class="btn-outline">Ver Tratamientos</a>
+            <a href="{{ auth()->check() ? route('citas.create') : route('login') }}" class="btn-primary">Pedir Cita</a>
+            <a href="{{ route('tratamientos') }}" class="btn-outline">Ver Tratamientos</a>
         </div>
     </section>
 
