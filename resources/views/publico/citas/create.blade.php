@@ -99,11 +99,22 @@ function actualizarHoras() {
     // Ordenar por turno (manana primero)
     horariosFiltrados.sort((a, b) => (a.turno === 'manana' ? -1 : 1));
     
+    // Detectar si la fecha elegida es hoy y calcular la hora actual en decimal
+    const hoy = new Date();
+    const fechaHoyStr = hoy.getFullYear() + '-' + (hoy.getMonth() + 1).toString().padStart(2, '0') + '-' + hoy.getDate().toString().padStart(2, '0');
+    const esHoy = (fecha === fechaHoyStr);
+    const horaActualDecimal = hoy.getHours() + (hoy.getMinutes() / 60);
+    
     horariosFiltrados.forEach(horario => {
         const inicio = convertirAHoras(horario.hora_inicio);
         const fin = convertirAHoras(horario.hora_fin);
         
         for (let h = inicio; h < fin; h += 0.5) {
+            // Si la fecha es hoy, saltar las horas que ya pasaron
+            if (esHoy && h <= horaActualDecimal) {
+                continue;
+            }
+            
             const horaStr = Math.floor(h).toString().padStart(2, '0') + ':' + ((h % 1) * 60).toString().padStart(2, '0');
             const option = document.createElement('option');
             option.value = horaStr;

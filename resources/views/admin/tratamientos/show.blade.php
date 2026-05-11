@@ -23,7 +23,7 @@
             <p style="margin-top: 1rem;">
                 <strong>Descripción:</strong>
             </p>
-            <p style="color: var(--color-texto-suave); margin-top: 0.5rem; line-height: 1.6;">{{ $tratamiento->descripcion }}</p>
+            <p style="color: var(--color-texto-suave); margin-top: 0.5rem; line-height: 1.6; white-space: pre-line;">{{ $tratamiento->descripcion }}</p>
             @endif
         </div>
         

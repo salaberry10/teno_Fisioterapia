@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('inicio');
-});
+})->name('inicio');
+
+Route::get('/sobre-nosotros', function () {
+    return view('sobre_nosotros');
+})->name('sobre-nosotros');
 
 Route::get('/admin', function () {
     return view('admin.index');
-})->middleware(['auth', 'verified'])->name('admin.index');
+})->middleware(['auth', 'verified', 'admin'])->name('admin.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,9 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('admin/tratamientos', AdminTratamientoController::class)->middleware('auth')->names('admin.tratamientos');
-Route::resource('admin/solicitudes', AdminSolicitudController::class)->middleware('auth')->names('admin.solicitudes');
-Route::resource('admin/usuarios', UserControllerAdmin::class)->middleware('auth')->names('admin.usuarios');
+Route::resource('admin/tratamientos', AdminTratamientoController::class)->middleware(['auth', 'admin'])->names('admin.tratamientos');
+Route::resource('admin/solicitudes', AdminSolicitudController::class)->middleware(['auth', 'admin'])->names('admin.solicitudes');
+Route::resource('admin/usuarios', UserControllerAdmin::class)->middleware(['auth', 'admin'])->names('admin.usuarios');
+
+// Ruta extra para promocionar/despromocionar admin
+Route::put('/admin/usuarios/{user}/toggle-admin', [UserControllerAdmin::class, 'toggleAdmin'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.usuarios.toggleAdmin');
 
 // Citas - requiere autenticación
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -42,7 +51,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 // Admin citas
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/admin/citas', [CitaControllerAdmin::class, 'index'])->name('admin.citas.index');
     Route::put('/admin/citas/{cita}', [CitaControllerAdmin::class, 'update'])->name('admin.citas.update');
     Route::delete('/admin/citas/{cita}', [CitaControllerAdmin::class, 'destroy'])->name('admin.citas.destroy');

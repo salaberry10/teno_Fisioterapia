@@ -139,6 +139,7 @@
 .tratamiento-descripcion p {
     color: var(--color-texto);
     line-height: 1.7;
+    white-space: pre-line;
 }
 
 .formulario-subtitle {
