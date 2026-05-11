@@ -53,7 +53,8 @@
                 </div>
                 
                 <button type="submit" class="btn-form" style="width: auto; padding: 12px 24px;">Actualizar Tratamiento</button>
-                <a href="{{ route('admin.tratamientos.index') }}" class="btn-cancelar">Cancelar</a>
+                <a href="{{ route('admin.tratamientos.index') }}" class="btn-cancelar">← Tratamientos</a>
+                <a href="{{ route('admin.index') }}" class="btn-editar">← Panel Admin</a>
             </form>
         </div>
     </div>

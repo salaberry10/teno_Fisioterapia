@@ -20,6 +20,12 @@
         </div>
 
         <div class="form-group">
+            <x-input-label for="telefono" :value="__('Teléfono')" />
+            <x-text-input id="telefono" type="text" name="telefono" :value="old('telefono')" required autocomplete="telefono" placeholder="Ej: 666 123 456" />
+            <x-input-error :messages="$errors->get('telefono')" class="mt-2" />
+        </div>
+
+        <div class="form-group">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />

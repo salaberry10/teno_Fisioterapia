@@ -20,7 +20,7 @@
                 <a href="{{ url('/') }}">Inicio</a>
                 <a href="#">Tratamientos</a>
                 <a href="#">Contacto</a>
-                <a href="/sobre-nosotros">Sobre Nosotros</a>
+                <a href="{{ route('sobre-nosotros') }}">Sobre Nosotros</a>
             </div>
         </nav>
 

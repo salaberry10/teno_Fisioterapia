@@ -49,11 +49,24 @@ class CitaControllerAdmin extends Controller
 
     public function actualizarHorarios(Request $request)
     {
-        foreach ($request->horarios as $horarioData) {
-            if (isset($horarioData['id'])) {
-                Horario::find($horarioData['id'])->update($horarioData);
-            } else {
-                Horario::create($horarioData);
+        $horariosData = $request->horarios;
+
+        foreach ($horariosData as $key => $turnos) {
+            foreach ($turnos as $turno => $data) {
+                if (!isset($data['tipo'])) {
+                    continue;
+                }
+
+                $data['activo'] = isset($data['activo']) ? 1 : 0;
+                
+                Horario::updateOrCreate(
+                    [
+                        'tipo' => $data['tipo'],
+                        'dia_semana' => $data['dia_semana'],
+                        'turno' => $data['turno'],
+                    ],
+                    $data
+                );
             }
         }
 

@@ -16,16 +16,31 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                Rule::unique(User::class)->ignore($this->user()->id),
-            ],
+        $user = $this->user();
+        $esAdmin = $user && ($user->is_admin ?? false);
+        
+        // Campos que cualquier usuario puede editar
+        $rules = [
+            'fecha_nacimiento' => ['nullable', 'date'],
+            'direccion' => ['nullable', 'string', 'max:255'],
+            'localidad' => ['nullable', 'string', 'max:255'],
+            'observaciones_medicas' => ['nullable', 'string'],
         ];
+        
+        if ($esAdmin) {
+            // Admin puede editar todo
+            $rules['name'] = ['required', 'string', 'max:255'];
+            $rules['apellidos'] = ['nullable', 'string', 'max:255'];
+            $rules['email'] = ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)];
+            $rules['telefono'] = ['nullable', 'string', 'max:20'];
+        } else {
+            // Usuario normal: estos campos son obligatorios pero readonly
+            $rules['name'] = ['required', 'string', 'max:255'];
+            $rules['apellidos'] = ['nullable', 'string', 'max:255'];
+            $rules['email'] = ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)];
+            $rules['telefono'] = ['nullable', 'string', 'max:20'];
+        }
+        
+        return $rules;
     }
 }

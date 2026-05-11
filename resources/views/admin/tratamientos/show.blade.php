@@ -23,13 +23,14 @@
             <p style="margin-top: 1rem;">
                 <strong>Descripción:</strong>
             </p>
-            <p style="color: var(--color-texto-suave); margin-top: 0.5rem; line-height: 1.6;">{{ $tratamiento->descripcion }}</p>
+            <p style="color: var(--color-texto-suave); margin-top: 0.5rem; line-height: 1.6; white-space: pre-line;">{{ $tratamiento->descripcion }}</p>
             @endif
         </div>
         
         <div style="display: flex; gap: 1rem;">
             <a href="{{ route('admin.tratamientos.edit', $tratamiento) }}" class="nav-btn">Editar</a>
-            <a href="{{ route('admin.tratamientos.index') }}" class="btn-cancelar" style="margin: 0; padding-top: 8px;">← Volver al listado</a>
+            <a href="{{ route('admin.tratamientos.index') }}" class="btn-cancelar" style="margin: 0; padding-top: 8px;">← Tratamientos</a>
+            <a href="{{ route('admin.index') }}" class="btn-editar" style="margin: 0; padding-top: 8px;">← Panel Admin</a>
         </div>
     </div>
 </div>

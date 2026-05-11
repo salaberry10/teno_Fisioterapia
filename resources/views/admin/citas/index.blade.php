@@ -73,7 +73,8 @@
         
         <div class="admin-actions">
             <a href="{{ route('admin.citas.horarios') }}" class="btn-editar">Configurar Horarios</a>
-            <a href="{{ url('/') }}" class="btn-cancelar">← Volver al inicio</a>
+            <a href="{{ route('admin.index') }}" class="btn-editar">← Panel Admin</a>
+            <a href="{{ url('/') }}" class="btn-cancelar">← Inicio</a>
         </div>
     </div>
 </div>

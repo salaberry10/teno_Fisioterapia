@@ -164,6 +164,10 @@
 </style>
 
 <script>
+    const APP_URL = "{{ url('/') }}";
+</script>
+
+<script>
 document.addEventListener('DOMContentLoaded', function() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const grid = document.getElementById('tratamientos-grid');
@@ -194,12 +198,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 filtered.forEach((t, i) => {
                     const isWide = i === 3; // La 4ª tarjeta es grande
                     const a = document.createElement('a');
-                    a.href = '/tratamiento/' + t.slug;
+                    a.href = APP_URL + '/tratamiento/' + t.slug;
                     a.className = 'tratamiento-card' + (isWide ? ' tratamiento-card-wide' : '');
                     
                     if (t.imagen) {
                         a.innerHTML = `
-                            <img src="/storage/${t.imagen}" alt="${t.titulo}">
+                            <img src="${APP_URL}/storage/${t.imagen}" alt="${t.titulo}">
                             <div class="tratamiento-card-overlay">
                                 <span class="tratamiento-card-title">${t.titulo}</span>
                             </div>

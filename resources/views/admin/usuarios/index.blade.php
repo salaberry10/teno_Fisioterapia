@@ -67,7 +67,8 @@
             @endif
         </div>
         
-        <a href="{{ url('/') }}" class="btn-cancelar">← Volver al inicio</a>
+        <a href="{{ route('admin.index') }}" class="btn-editar">← Panel Admin</a>
+        <a href="{{ url('/') }}" class="btn-cancelar">← Inicio</a>
     </div>
 </div>
 @endsection
