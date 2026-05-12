@@ -17,7 +17,13 @@
                     <span class="logo-sub">Fisioterapia</span>
                 </div>
             </div>
-            <div class="nav-right">
+
+            {{-- Botón hamburguesa (solo visible en móvil) --}}
+            <button class="hamburguesa" id="btn-hamburguesa" aria-label="Menú">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="nav-right" id="nav-right">
                 <div class="nav-links">
                     <a href="{{ url('/') }}" class="{{ request()->routeIs('inicio') ? 'activo' : '' }}">Inicio</a>
                     <a href="{{ url('/tratamientos') }}" class="{{ request()->routeIs('tratamientos') || request()->routeIs('tratamiento.show') ? 'activo' : '' }}">Tratamientos</a>
@@ -29,11 +35,12 @@
                 </div>
                 @auth
                     <a href="{{ route('profile.edit') }}" class="nav-user-name">{{ Auth::user()->name }}</a>
-                    <a href="{{ route('citas.mis-citas') }}" class="nav-admin-link">Mis Citas</a>
                     @if(Auth::user()->is_admin)
                     <a href="{{ route('admin.usuarios.index') }}" class="nav-admin-link">Usuarios</a>
                     <a href="{{ route('admin.citas.index') }}" class="nav-admin-link">Citas</a>
                     <a href="{{ route('admin.index') }}" class="nav-admin-link">Panel Admin</a>
+                    @else
+                    <a href="{{ route('citas.mis-citas') }}" class="nav-admin-link">Mis Citas</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -117,5 +124,12 @@
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
+
+        {{-- Script del menú hamburguesa --}}
+        <script>
+            document.getElementById('btn-hamburguesa').addEventListener('click', function() {
+                document.getElementById('nav-right').classList.toggle('menu-abierto');
+            });
+        </script>
     </body>
 </html>

@@ -60,7 +60,7 @@
 
 <script>
 const horarios = @json($horarios);
-const tipoSeleccionado = document.getElementById('tipo');
+const citasOcupadas = @json($citasOcupadas);
 
 function actualizarHoras() {
     const tipo = document.getElementById('tipo').value;
@@ -88,7 +88,6 @@ function actualizarHoras() {
     );
     
     if (horariosFiltrados.length === 0) {
-        // Mostrar mensaje según el día
         const nombresDias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
         const nombreDia = nombresDias[fechaObj.getDay()];
         horaSelect.innerHTML = '<option value="">No hay disponibilidad el ' + nombreDia + '</option>';
@@ -105,6 +104,11 @@ function actualizarHoras() {
     const esHoy = (fecha === fechaHoyStr);
     const horaActualDecimal = hoy.getHours() + (hoy.getMinutes() / 60);
     
+    // Obtener las horas ya ocupadas para esa fecha y tipo
+    const horasOcupadas = citasOcupadas
+        .filter(c => c.fecha === fecha && c.tipo === tipo)
+        .map(c => c.hora.substring(0, 5));
+    
     horariosFiltrados.forEach(horario => {
         const inicio = convertirAHoras(horario.hora_inicio);
         const fin = convertirAHoras(horario.hora_fin);
@@ -116,12 +120,23 @@ function actualizarHoras() {
             }
             
             const horaStr = Math.floor(h).toString().padStart(2, '0') + ':' + ((h % 1) * 60).toString().padStart(2, '0');
+            
+            // Saltar si esta hora ya está ocupada
+            if (horasOcupadas.includes(horaStr)) {
+                continue;
+            }
+            
             const option = document.createElement('option');
             option.value = horaStr;
             option.textContent = horaStr + (horario.turno === 'manana' ? ' (Mañana)' : ' (Tarde)');
             horaSelect.appendChild(option);
         }
     });
+    
+    // Si después de filtrar no quedan horas, avisar
+    if (horaSelect.children.length === 1) {
+        horaSelect.innerHTML = '<option value="">No hay horas disponibles para este día</option>';
+    }
     
     grupoHora.style.display = 'block';
 }

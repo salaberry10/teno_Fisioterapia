@@ -1359,3 +1359,220 @@ a {
         gap: 2rem;
     }
 }
+
+/* ===================================================
+   RESPONSIVE MOVIL (max-width: 768px)
+   =================================================== */
+
+/* Por defecto, el botón hamburguesa NO se ve (es solo móvil) */
+.hamburguesa {
+    display: none !important;
+    background: transparent;
+    border: none;
+    font-size: 1.6rem;
+    color: var(--color-muy-oscuro);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    /* ===== NAVBAR ===== */
+    .navbar {
+        flex-wrap: wrap;
+        padding: 1rem;
+        position: relative;
+    }
+
+    /* Mostrar la hamburguesa en móvil */
+    .hamburguesa {
+        display: block !important;
+    }
+
+    /* Por defecto en móvil, el menú está oculto */
+    .nav-right {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    /* Cuando se pulsa la hamburguesa, se muestra */
+    .nav-right.menu-abierto {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    border-top: 2px solid var(--color-principal);
+}
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .nav-links a {
+        padding: 0.8rem 0;
+        width: 100%;
+        text-align: left;
+    }
+
+    .nav-admin-link,
+    .nav-user-name,
+    .nav-link-login {
+        width: 100%;
+        text-align: left;
+        padding: 0.8rem 0;
+    }
+
+    .nav-right form {
+        width: 100%;
+    }
+
+    .nav-btn {
+        width: 100%;
+    }
+
+    /* Logo más pequeño en móvil */
+    .logo-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-name {
+        font-size: 1.1rem;
+    }
+
+    .logo-sub {
+        font-size: 0.7rem;
+    }
+
+    /* ===== FORMULARIOS ===== */
+    /* Que todos los formularios ocupen el ancho disponible */
+    .admin-container,
+    .admin-card,
+    form {
+        max-width: 100% !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Inputs y selects al 100% */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="date"],
+    input[type="tel"],
+    input[type="file"],
+    select,
+    textarea {
+        width: 100%;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+
+    /* Botones de formulario */
+    .btn-guardar,
+    .btn-cancelar,
+    .btn-editar,
+    .btn-borrar {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Form-actions: que los botones se apilen */
+    .form-actions {
+        flex-direction: column;
+    }
+
+    /* ===== TABLAS DEL PANEL ADMIN ===== */
+    /* Permitir scroll horizontal en tablas */
+    .admin-card {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .admin-table {
+        min-width: 600px;
+        font-size: 0.85rem;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 0.6rem 0.5rem;
+    }
+
+    /* Acciones dentro de tablas: que se apilen */
+    .acciones {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .acciones form,
+    .acciones a,
+    .acciones button {
+        width: 100%;
+    }
+
+    /* ===== MAIN: que tenga padding lateral pequeño ===== */
+    main {
+        padding: 0;
+    }
+
+    /* ===== AJUSTES VARIOS ===== */
+    /* Botones flotantes más pequeños en móvil */
+    .boton-flotante {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+    }
+
+    .botones-flotantes {
+        bottom: 15px;
+        right: 15px;
+        gap: 10px;
+    }
+
+    /* Headers de sección */
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    h3 {
+        font-size: 1.2rem !important;
+    }
+
+    /* Padding general de páginas */
+    .section-header,
+    .section-tratamientos,
+    .section-sobre,
+    .tratamientos-page,
+    .admin-main {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* ===== Para pantallas MUY pequeñas (móviles antiguos) ===== */
+@media (max-width: 380px) {
+    .hero-banner-title {
+        font-size: 1.4rem;
+    }
+
+    .categoria-overlay h2 {
+        font-size: 1.4rem;
+    }
+
+    .vision-texto h2 {
+        font-size: 1.3rem;
+    }
+}
